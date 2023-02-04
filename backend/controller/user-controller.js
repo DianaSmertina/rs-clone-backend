@@ -10,13 +10,15 @@ class UserController {
         try {
             const name = await req.body.username;
             const password = await req.body.password;
-            // добаить проверку есть ли такой юзер
             const hash = bcrypt.hashSync(password, 7);
             const newUser = await db.query('INSERT INTO users(username, password) VALUES ($1, $2)', [name, hash]);
             // res.json(newUser); не возвращает созданного юзера, разобраться
         } catch(e) {
-            console.log(e);
-            res.status(400).json({message: 'Registration error'});
+            if (e.code = '23505') {
+                res.status(400).json({message: 'This username is already taken'});
+            } else {
+                res.status(400).json({message: 'Registration error'});
+            }
         }
     }
 
@@ -25,7 +27,7 @@ class UserController {
 
         } catch(e) {
             console.log(e);
-            req.status(400).json({message: 'Registration error'});
+            req.status(400).json({message: 'Autorization error'});
         }
     }
 }
