@@ -15,6 +15,15 @@ class UserController {
         }
     }
 
+    async getUsers(req, res) {
+        try {
+            const user = await db.query('SELECT * FROM users ORDER BY id ASC');
+            return res.json(user.rows);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
     async createNewUser(req, res) {
         try {
             const name = await req.body.username;
