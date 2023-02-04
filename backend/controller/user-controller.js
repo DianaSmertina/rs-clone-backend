@@ -6,7 +6,6 @@ class UserController {
         try {
             const username = req.params.username;
             const user = await db.query('SELECT * FROM users where username = $1', [username]);
-            console.log(user);
             if (user.rowCount === 0) {
                 return res.status(400).json({message: 'User not found'});
             }
@@ -21,8 +20,8 @@ class UserController {
             const name = await req.body.username;
             const password = await req.body.password;
             const hash = bcrypt.hashSync(password, 7);
-            const newUser = await db.query('INSERT INTO users(username, password) VALUES ($1, $2)', [name, hash]);
-            return res.json(newUser.rows[0]);
+            await db.query('INSERT INTO users(username, password) VALUES ($1, $2)', [name, hash]);
+            return res.json('ok');
         } catch(e) {
             if (e.code = '23505') {
                 res.status(400).json({message: 'This username is already taken'});

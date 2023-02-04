@@ -16,9 +16,6 @@ const start = () => {
     }
 }
 
-// app.get('/', (req, res) => {
-//     res.send(db);
-// });
 app.use(express.json());
 app.use('/api', router);
 
