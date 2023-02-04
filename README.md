@@ -14,14 +14,14 @@ You can test requests with [Postman](https://www.postman.com/downloads/?utm_sour
 
 # Requests
 
-## Create new User (Sign Up)
+## Create new user (Sign Up)
 Post request on http://localhost:5000/api/user with body `{"username": "...", "password": "..."}`  
 If user is successfully created response is ok.  
 In case if username is taken it will be 400 error with message: 'This username is already taken'
 
 ## Sign in
 Get request on http://localhost:5000/api/sign-in with body `{"username": "...", "password": "..."}`  
-If username and password are valid response is ok.
+If username and password are valid response is ok.  
 In case if username isn't valid it will be 400 error with message: 'User not found'  
 In case if password isn't valid it will be 400 error with message: 'Wrong password'
 
@@ -30,3 +30,7 @@ Get request on http://localhost:5000/api/user/username where username it is spec
 If user was found response is `{"id": number, "username": string, "password": string }`  
 The password is encrypted  
 In case if username isn't valid it will be 400 error with message: 'User not found'  
+
+## Get all users
+Get request on http://localhost:5000/api/user  
+Return array with all users 
