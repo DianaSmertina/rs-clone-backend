@@ -50,7 +50,7 @@ class UserController {
             if (user.rowCount === 0) {
                 return res.status(400).json({message: 'User not found'});
             }
-            const validPassword = bcrypt.compare(password, user.rows[0].password);
+            const validPassword = await bcrypt.compare(password, user.rows[0].password);
             if (!validPassword) {
                 return res.status(400).json({message: 'Wrong password'});
             }
