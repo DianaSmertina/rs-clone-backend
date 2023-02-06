@@ -15,7 +15,7 @@ You can test requests with [Postman](https://www.postman.com/downloads/?utm_sour
 # Requests
 
 ## Create new user (Sign Up)
-Post request on http://localhost:5000/api/user with body `{"username": "...", "password": "..."}`  
+Post request on http://localhost:5000/api/user with body `{"username": "...", "password": "..."}` and headers: `'Content-type': 'application/json'`  
 If user is successfully created response is ok.  
 In case if username is taken it will be 400 error with message: 'This username is already taken'
 
