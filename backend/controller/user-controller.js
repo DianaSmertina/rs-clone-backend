@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const { json } = require('express');
 const db = require('../db');
 
 class UserController {
@@ -33,6 +34,7 @@ class UserController {
             return res.json('ok');
         } catch(e) {
             if (e.code = '23505') {
+                console.log(e);
                 res.status(400).json({message: 'This username is already taken'});
             } else {
                 res.status(400).json({message: 'Registration error'});

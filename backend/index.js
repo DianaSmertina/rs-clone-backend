@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 5000;
 const db = require('./db');
 const pg = require('pg');
 const router = require('./routes/user-routes');
+const cors = require('cors');
 
 const app = express();
 
@@ -16,6 +17,9 @@ const start = () => {
     }
 }
 
+app.use(cors({
+    origin: 'http://localhost:8080',
+}));
 app.use(express.json());
 app.use('/api', router);
 
