@@ -5,9 +5,10 @@ Api for rs-clone
 The server isn't deployed yet. You can use it local
 
 1. Clone this repo
-2. `cd backend`
-3. Install dependencies with `npm install`
-4. Start server `npm run start`
+2. `git checkout develop`
+3. `cd backend`
+4. Install dependencies with `npm install`
+5. Start server `npm run start`
 
 Server will run in port 5000.  
 You can test requests with [Postman](https://www.postman.com/downloads/?utm_source=postman-home)
