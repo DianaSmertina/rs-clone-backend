@@ -20,7 +20,7 @@ If user is successfully created response is ok.
 In case if username is taken it will be 400 error with message: 'This username is already taken'
 
 ## Sign in
-Get request on http://localhost:5000/api/sign-in with body `{"username": "...", "password": "..."}`  
+Post request on http://localhost:5000/api/sign-in with body `{"username": "...", "password": "..."}` and headers: `'Content-type': 'application/json'`  
 If username and password are valid response is ok.  
 In case if username isn't valid it will be 400 error with message: 'User not found'  
 In case if password isn't valid it will be 400 error with message: 'Wrong password'
