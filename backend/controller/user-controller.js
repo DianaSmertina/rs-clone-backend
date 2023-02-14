@@ -31,6 +31,7 @@ class UserController {
             const password = await req.body.password;
             const hash = bcrypt.hashSync(password, 7);
             await db.query('INSERT INTO users(username, password) VALUES ($1, $2)', [name, hash]);
+            await db.query('INSERT INTO results(country, population, flags, user_name) VALUES ($1, $2, $3, $4)', [0, 0, 0, name]);
             return res.json('ok');
         } catch(e) {
             if (e.code = '23505') {
