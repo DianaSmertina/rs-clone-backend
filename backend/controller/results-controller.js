@@ -35,6 +35,54 @@ class ResultsController {
             console.log(e);
         }
     }
+
+    async getCountry(req, res) {
+        try {
+            const username = req.params.username;
+            const records = await db.query('SELECT * FROM results where user_name = $1', [username]);
+            if (records.rowCount === 0) {
+                return res.status(400).json({message: 'User not found'});
+            }
+            return res.json(records.rows[0].country);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    async getPopulation(req, res) {
+        try {
+            const username = req.params.username;
+            const records = await db.query('SELECT * FROM results where user_name = $1', [username]);
+            if (records.rowCount === 0) {
+                return res.status(400).json({message: 'User not found'});
+            }
+            return res.json(records.rows[0].population);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    async getFlags(req, res) {
+        try {
+            const username = req.params.username;
+            const records = await db.query('SELECT * FROM results where user_name = $1', [username]);
+            if (records.rowCount === 0) {
+                return res.status(400).json({message: 'User not found'});
+            }
+            return res.json(records.rows[0].flags);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    async getAllResults(req, res) {
+        try {
+            const playResults = await db.query('SELECT * FROM results ORDER BY country DESC');
+            return res.json(playResults.rows);
+        } catch(e) {
+            console.log(e);
+        }
+    }
 }
 
 module.exports = new ResultsController();
