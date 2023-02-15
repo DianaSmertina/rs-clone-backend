@@ -10,7 +10,7 @@ class ResultsController {
             await db.query('UPDATE results SET country = ($1) WHERE user_name = ($2)', [country, username]);
             return res.json('new record');
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Update record error'});
         }
     }
 
@@ -21,7 +21,7 @@ class ResultsController {
             await db.query('UPDATE results SET population = ($1) WHERE user_name = ($2)', [population, username]);
             return res.json('new record');
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Update record error'});
         }
     }
 
@@ -32,7 +32,7 @@ class ResultsController {
             await db.query('UPDATE results SET flags = ($1) WHERE user_name = ($2)', [flags, username]);
             return res.json('new record');
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Update record error'});
         }
     }
 
@@ -45,7 +45,7 @@ class ResultsController {
             }
             return res.json(records.rows[0].country);
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Get record error'});
         }
     }
 
@@ -58,7 +58,7 @@ class ResultsController {
             }
             return res.json(records.rows[0].population);
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Get record error'});
         }
     }
 
@@ -71,7 +71,7 @@ class ResultsController {
             }
             return res.json(records.rows[0].flags);
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Get record error'});
         }
     }
 
@@ -80,7 +80,7 @@ class ResultsController {
             const playResults = await db.query('SELECT * FROM results ORDER BY country DESC');
             return res.json(playResults.rows);
         } catch(e) {
-            console.log(e);
+            res.status(400).json({message: 'Get records error'});
         }
     }
 }
