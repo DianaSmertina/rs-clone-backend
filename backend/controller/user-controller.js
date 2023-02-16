@@ -30,7 +30,12 @@ class UserController {
             const name = await req.body.username;
             const password = await req.body.password;
             const hash = bcrypt.hashSync(password, 7);
-            await db.query('INSERT INTO users(username, password) VALUES ($1, $2)', [name, hash]);
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = (today.getMonth() + 1).toString().padStart(2, '0');
+            const day = today.getDate().toString().padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            await db.query('INSERT INTO users(username, password, reg_date) VALUES ($1, $2, $3)', [name, hash, formattedDate]);
             await db.query('INSERT INTO results(country, population, flags, user_name) VALUES ($1, $2, $3, $4)', [0, 0, 0, name]);
             return res.json('ok');
         } catch(e) {
