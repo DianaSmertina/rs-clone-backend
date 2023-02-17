@@ -83,6 +83,19 @@ class ResultsController {
             res.status(400).json({message: 'Get records error'});
         }
     }
+
+    async getUserResults(req, res) {
+        try {
+            const username = req.params.username;
+            const results = await db.query('SELECT * FROM results where user_name = $1', [username]);
+            if (results.rowCount === 0) {
+                return res.status(400).json({message: 'User not found'});
+            }
+            return res.json(results.rows[0]);
+        } catch(e) {
+            console.log(e);
+        }
+    }
 }
 
 module.exports = new ResultsController();

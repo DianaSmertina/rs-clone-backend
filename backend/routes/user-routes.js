@@ -14,5 +14,6 @@ router.get('/country/:username', resultsController.getCountry);
 router.get('/population/:username', resultsController.getPopulation);
 router.get('/flags/:username', resultsController.getFlags);
 router.get('/results', resultsController.getAllResults);
+router.get('/results/:username', resultsController.getUserResults);
 
 module.exports = router;
