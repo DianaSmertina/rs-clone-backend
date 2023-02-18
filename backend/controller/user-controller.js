@@ -79,6 +79,19 @@ class UserController {
           }
           fs.unlink(req.file.path);
     }
+
+    async getAvatar(req, res) {
+        try {
+            const username = req.params.username;
+            const user = await db.query('SELECT * FROM users where username = $1', [username]);
+            if (user.rowCount === 0) {
+                return res.status(400).json({message: 'User not found'});
+            }
+            return res.json(user.rows[0].avatar);
+        } catch {
+            res.send(error);
+        }
+    }
 }
 
 module.exports = new UserController();

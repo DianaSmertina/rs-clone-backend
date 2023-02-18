@@ -27,5 +27,6 @@ router.get('/flags/:username', resultsController.getFlags);
 router.get('/results', resultsController.getAllResults);
 router.get('/results/:username', resultsController.getUserResults);
 router.put('/avatar/:username', loader.single('avatar'), userController.createAvatar);
+router.get('/avatar/:username', userController.getAvatar);
 
 module.exports = router;
