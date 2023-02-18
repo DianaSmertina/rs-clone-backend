@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const { json } = require('express');
 const db = require('../db');
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs/promises');
 
 class UserController {
     async getUser(req, res) {
@@ -64,6 +66,18 @@ class UserController {
         } catch(e) {
             console.log(e);
         }
+    }
+
+    async createAvatar(req, res) {
+        try {
+            const username = req.params.username;
+            const avatar = await cloudinary.uploader.upload(req.file.path);
+            await db.query('UPDATE users SET avatar = ($1) WHERE username = ($2)', [avatar.url, username]);
+            res.send(avatar);
+          } catch (error) {
+            res.send(error);
+          }
+          fs.unlink(req.file.path);
     }
 }
 
