@@ -18,7 +18,7 @@ const start = () => {
 }
 
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: 'http://localhost:8080', //поменять на адрес деплоя
 }));
 app.use(express.json());
 app.use('/api', router);
