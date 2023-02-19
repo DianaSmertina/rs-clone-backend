@@ -36,6 +36,39 @@ class ResultsController {
         }
     }
 
+    async updateFlagsRegion(req, res) {
+        try {
+            const username = await req.body.username;
+            const region = await req.body.region;
+            await db.query('UPDATE results SET region_flags = ($1) WHERE user_name = ($2)', [region, username]);
+            return res.json('new record');
+        } catch(e) {
+            res.status(400).json({message: 'Update record error'});
+        }
+    }
+
+    async updateCountryRegion(req, res) {
+        try {
+            const username = await req.body.username;
+            const region = await req.body.region;
+            await db.query('UPDATE results SET region_country = ($1) WHERE user_name = ($2)', [region, username]);
+            return res.json('new record');
+        } catch(e) {
+            res.status(400).json({message: 'Update record error'});
+        }
+    }
+
+    async updatePopulationRegion(req, res) {
+        try {
+            const username = await req.body.username;
+            const region = await req.body.region;
+            await db.query('UPDATE results SET region_population = ($1) WHERE user_name = ($2)', [region, username]);
+            return res.json('new record');
+        } catch(e) {
+            res.status(400).json({message: 'Update record error'});
+        }
+    }
+
     async getCountry(req, res) {
         try {
             const username = req.params.username;
