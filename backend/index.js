@@ -18,7 +18,7 @@ const start = () => {
 }
 
 app.use(cors({
-    origin: 'https://magnificent-selkie-289f7d.netlify.app/',
+    origin: 'https://magnificent-selkie-289f7d.netlify.app',
 }));
 app.use(express.json());
 app.use('/api', router);
