@@ -18,7 +18,7 @@ const start = () => {
 }
 
 app.use(cors({
-    origin: 'http://localhost:8080', //поменять на адрес деплоя
+    origin: 'https://63fca58d3c0ada0b951ad91a--magnificent-selkie-289f7d.netlify.app/', //поменять на адрес деплоя
 }));
 app.use(express.json());
 app.use('/api', router);
